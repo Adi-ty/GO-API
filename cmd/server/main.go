@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 
 	"github.com/Adi-ty/GO-API/internal/db"
@@ -18,9 +17,11 @@ func Run() error {
 		fmt.Println("Failed to connect to database")
 		return err
 	}
-	if err := db.Ping(context.Background()); err != nil {
+	if err := db.MigrateDB(); err != nil {
+		fmt.Println("failed to migrate database")
 		return err
 	}
+
 	fmt.Println("succesfully connected and pinged database")
 
 	return nil

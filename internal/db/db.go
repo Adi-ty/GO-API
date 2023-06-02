@@ -9,11 +9,11 @@ import (
 	_ "github.com/lib/pq"
 )
 
-type Databse struct {
+type Database struct {
 	Client *sqlx.DB
 }
 
-func NewDatabase() (*Databse, error) {
+func NewDatabase() (*Database, error) {
 	connectionString := fmt.Sprintf(
 		"host=%s port=%s user=%s dbname=%s password=%s sslmode=%s",
 		os.Getenv("DB_HOST"),
@@ -27,14 +27,14 @@ func NewDatabase() (*Databse, error) {
 	dbConn, err := sqlx.Connect("postgres", connectionString)
 
 	if err != nil {
-		return &Databse{}, fmt.Errorf("could not connet to the database: %w", err)
+		return &Database{}, fmt.Errorf("could not connet to the database: %w", err)
 	}
 
-	return &Databse{
+	return &Database{
 		Client: dbConn,
 	}, nil
 }
 
-func (d *Databse) Ping(ctx context.Context) error {
+func (d *Database) Ping(ctx context.Context) error {
 	return d.Client.DB.PingContext(ctx)
 }
