@@ -1,11 +1,11 @@
 package main
 
 import (
-	"context"
 	"fmt"
 
 	"github.com/Adi-ty/GO-API/internal/comment"
 	"github.com/Adi-ty/GO-API/internal/db"
+	transportHttp "github.com/Adi-ty/GO-API/internal/transport/http"
 )
 
 // Run - is going to be responsible
@@ -26,20 +26,10 @@ func Run() error {
 
 	cmtService := comment.NewService(db)
 
-	cmtService.PostComment(
-		context.Background(),
-		comment.Comment{
-			ID:     "9a31bf83-28dc-4b8d-bf70-7d347a24ff2e",
-			Slug:   "manual-test",
-			Author: "Aditya",
-			Body:   "Hello World!",
-		},
-	)
-
-	fmt.Println(cmtService.GetComment(
-		context.Background(),
-		"9a31bf83-28dc-4b8d-bf70-7d347a24ff2e",
-	))
+	httpHandler := transportHttp.NewHandler(cmtService)
+	if err := httpHandler.Serve(); err != nil {
+		return err
+	}
 
 	return nil
 }
