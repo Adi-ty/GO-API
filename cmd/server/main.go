@@ -1,8 +1,10 @@
 package main
 
 import (
+	"context"
 	"fmt"
 
+	"github.com/Adi-ty/GO-API/internal/comment"
 	"github.com/Adi-ty/GO-API/internal/db"
 )
 
@@ -22,7 +24,11 @@ func Run() error {
 		return err
 	}
 
-	fmt.Println("succesfully connected and pinged database")
+	cmtService := comment.NewService(db)
+	fmt.Println(cmtService.GetComment(
+		context.Background(),
+		"9a31bf83-28dc-4b8d-bf70-7d347a24ff2e",
+	))
 
 	return nil
 }
