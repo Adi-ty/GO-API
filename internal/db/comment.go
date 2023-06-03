@@ -32,6 +32,12 @@ func (d *Database) GetComment(
 ) (comment.Comment, error) {
 
 	var cmtRow CommentRow
+	// --CODE TO CHECK TIMEOUTMIDDLEWARE--
+	// _, err := d.Client.ExecContext(ctx, "SELECT pg_sleep(16)")
+	// if err != nil {
+	// 	return comment.Comment{}, err
+	// }
+
 	row := d.Client.QueryRowContext(
 		ctx,
 		`SELECT id, slug, body, author
