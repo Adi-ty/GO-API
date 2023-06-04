@@ -97,7 +97,7 @@ This repository provides a template project for building a Go API. The API is bu
 
 ## JWT Authentication 
 
-To authorize requests for creating, updating, or deleting comments, a bearer token with the signature "Aditya" needs to be included in the Authorization header. You can generate the JWT token using a tool like [jwt.io](https://jwt.io/). Please make sure to keep the token secure and only share it with trusted individuals.
+To authorize requests for creating, updating, or deleting comments, a bearer token with the signature "Aditya" needs to be included in the Authorization header. You can generate the JWT token here [jwt.io](https://jwt.io/). 
 
 ## Contributing 
 
