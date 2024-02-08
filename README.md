@@ -6,7 +6,7 @@ This repository provides a template project for building a Go API. The API is bu
 
 - Clone the repository: 
   ```
-  git clone https://github.com/{YOUR_USERNAME}/GO-API.git
+  git clone https://github.com/Adi-ty/GO-API.git
   ```
   
 - Change to the project directory:
